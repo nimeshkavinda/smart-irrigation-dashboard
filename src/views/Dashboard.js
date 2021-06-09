@@ -1,20 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
+import moment from "moment";
 
 export default function Dashboard() {
+  const [time, setTime] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
+  const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
+  const [current, setCurrent] = useState("");
   const [data, setData] = useState("");
 
   useEffect(() => {
     fetch(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=6.848&lon=79.9265&appid=a9aee5f5a71fff1fa1a722f419473c4b",
+      "https://api.openweathermap.org/data/2.5/onecall?lat=6.848&lon=79.9265&appid=a9aee5f5a71fff1fa1a722f419473c4b&units=metric",
       {
         method: "GET",
       }
     )
       .then((response) => response.json())
       .then((data) => {
-        setWeather(data);
+        setWeather(data.current.weather);
+        setCurrent(data.current);
+        setLocation(data);
         console.log(data);
       })
       .catch((err) => {
@@ -30,6 +36,13 @@ export default function Dashboard() {
   //       .finally(() => setLoading(false));
   //   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+      return () => clearTimeout(timer);
+    }, 1000);
+  });
+
   return (
     <div>
       <MDBContainer>
@@ -38,7 +51,7 @@ export default function Dashboard() {
           style={{
             backgroundImage:
               "url('https://mdbcdn.b-cdn.net/img/new/slides/041.jpg')",
-            height: 400,
+            height: 600,
           }}
         >
           <div
@@ -47,15 +60,9 @@ export default function Dashboard() {
           >
             <div className="d-flex justify-content-center align-items-center h-100">
               <div className="text-white">
-                <h1 className="mb-3">Heading</h1>
-                <h4 className="mb-3">Subheading</h4>
-                <a
-                  className="btn btn-outline-light btn-lg"
-                  href="#!"
-                  role="button"
-                >
-                  Call to action
-                </a>
+                <h5 className="mb-3">{time}</h5>
+                <h3 className="mb-3">{location.timezone}</h3>
+                <h1 className="mb-3">{current.temp}</h1>
               </div>
             </div>
           </div>

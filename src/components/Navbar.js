@@ -8,11 +8,6 @@ import {
   MDBNavbarLink,
   MDBNavbarToggler,
   MDBCollapse,
-  MDBDropdown,
-  MDBDropdownMenu,
-  MDBDropdownToggle,
-  MDBDropdownItem,
-  MDBDropdownLink,
 } from "mdb-react-ui-kit";
 
 export default function Navbar() {
@@ -51,7 +46,7 @@ export default function Navbar() {
               <MDBNavbarLink href="#">Weather</MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href="#">Dashboard</MDBNavbarLink>
+              <MDBNavbarLink href="#">Reports</MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
         </MDBCollapse>
