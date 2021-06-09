@@ -7,7 +7,11 @@ export default function Dashboard() {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
   const [current, setCurrent] = useState("");
-  const [data, setData] = useState("");
+  const [channel, setChannel] = useState("");
+  const [soilMoist, setSoilMoist] = useState("");
+  const [temp, setTemp] = useState("");
+  const [humidity, setHumidity] = useState("");
+  const [lightIntensity, setLightIntensity] = useState("");
 
   useEffect(() => {
     fetch(
@@ -18,7 +22,7 @@ export default function Dashboard() {
     )
       .then((response) => response.json())
       .then((data) => {
-        setWeather(data.current.weather);
+        setWeather(data.current.weather[0]);
         setCurrent(data.current);
         setLocation(data);
         console.log(data);
@@ -28,13 +32,18 @@ export default function Dashboard() {
       });
   }, []);
 
-  //   useEffect(() => {
-  //     fetch("https://api.thingspeak.com/channels/1389777/feeds.json?results=2")
-  //       .then((response) => response.json())
-  //       .then((json) => setData(json.feeds.slice(-1)[0]))
-  //       .catch((error) => console.error(error))
-  //       .finally(() => setLoading(false));
-  //   }, []);
+  useEffect(() => {
+    fetch("https://api.thingspeak.com/channels/1389777/feeds.json?results=2")
+      .then((response) => response.json())
+      .then((json) => {
+        setChannel(json.channel);
+        setSoilMoist(json.feeds.slice(-1)[0].field1);
+        setTemp(json.feeds.slice(-1)[0].field2);
+        setHumidity(json.feeds.slice(-1)[0].field3);
+        setLightIntensity(json.feeds.slice(-1)[0].field4);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -63,9 +72,18 @@ export default function Dashboard() {
                 <h5 className="mb-3">{time}</h5>
                 <h3 className="mb-3">{location.timezone}</h3>
                 <h1 className="mb-3">{current.temp}</h1>
+                <h3 className="mb-3">{weather.main}</h3>
+                <h3 className="mb-3">{weather.description}</h3>
               </div>
             </div>
           </div>
+        </div>
+        <div className="reports">
+          <MDBRow>
+            <h1 className="mb-3">Report</h1>
+            <h3>{soilMoist}</h3>
+            <h3>{channel.field1}</h3>
+          </MDBRow>
         </div>
       </MDBContainer>
     </div>
