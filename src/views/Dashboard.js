@@ -34,7 +34,7 @@ export default function Dashboard() {
     <div>
       <MDBContainer>
         <div
-          className="p-5 text-center bg-image"
+          className="jumbtron p-5 text-center bg-image"
           style={{
             backgroundImage:
               "url('https://mdbcdn.b-cdn.net/img/new/slides/041.jpg')",
