@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [temp, setTemp] = useState("");
   const [humidity, setHumidity] = useState("");
   const [lightIntensity, setLightIntensity] = useState("");
+  const [pump, setPump] = useState("Off");
 
   useEffect(() => {
     fetch(
@@ -32,18 +33,22 @@ export default function Dashboard() {
       });
   }, []);
 
-  useEffect(() => {
-    fetch("https://api.thingspeak.com/channels/1389777/feeds.json?results=2")
-      .then((response) => response.json())
-      .then((json) => {
-        setChannel(json.channel);
-        setSoilMoist(json.feeds.slice(-1)[0].field1);
-        setTemp(json.feeds.slice(-1)[0].field2);
-        setHumidity(json.feeds.slice(-1)[0].field3);
-        setLightIntensity(json.feeds.slice(-1)[0].field4);
-      })
-      .catch((error) => console.error(error));
-  }, []);
+  useEffect(
+    () => {
+      fetch("https://api.thingspeak.com/channels/1389777/feeds.json?results=2")
+        .then((response) => response.json())
+        .then((json) => {
+          setChannel(json.channel);
+          setSoilMoist(json.feeds.slice(-1)[0].field1);
+          setTemp(json.feeds.slice(-1)[0].field2);
+          setHumidity(json.feeds.slice(-1)[0].field3);
+          setLightIntensity(json.feeds.slice(-1)[0].field4);
+        })
+        .catch((error) => console.error(error));
+    },
+    [],
+    1000
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,6 +56,10 @@ export default function Dashboard() {
       return () => clearTimeout(timer);
     }, 1000);
   });
+
+  useEffect(() => {
+    soilMoist < "50" ? setPump("On") : setPump("Off");
+  }, [soilMoist]);
 
   return (
     <div>
@@ -80,7 +89,7 @@ export default function Dashboard() {
         </div>
         <div className="reports">
           <MDBRow>
-            <h1 className="mb-3">Report</h1>
+            <h1 className="mb-3">{pump}</h1>
             <h3>{soilMoist}</h3>
             <h3>{channel.field1}</h3>
           </MDBRow>
