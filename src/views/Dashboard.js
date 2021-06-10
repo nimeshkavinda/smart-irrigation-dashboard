@@ -9,19 +9,6 @@ export default function Dashboard() {
   const [lightIntensity, setLightIntensity] = useState("");
   const [pump, setPump] = useState("Off");
 
-  // useEffect(() => {
-  //   fetch("https://api.thingspeak.com/channels/1389777/feeds.json?results=2")
-  //     .then((response) => response.json())
-  //     .then((json) => {
-  //       setChannel(json.channel);
-  //       setSoilMoist(json.feeds.slice(-1)[0].field1);
-  //       setTemp(json.feeds.slice(-1)[0].field2);
-  //       setHumidity(json.feeds.slice(-1)[0].field3);
-  //       setLightIntensity(json.feeds.slice(-1)[0].field4);
-  //     })
-  //     .catch((error) => console.error(error));
-  // }, 1000);
-
   useEffect(() => {
     const fetchData = async () => {
       await fetch(
@@ -38,20 +25,22 @@ export default function Dashboard() {
         .catch((e) => console.error(e));
     };
     fetchData();
-    const interval = setInterval(() => fetchData(), 1000);
+    const interval = setInterval(() => fetchData(), 2000);
     return () => {
       clearInterval(interval);
     };
   }, []);
 
   useEffect(() => {
-    soilMoist <= "50" ? setPump("On") : setPump("Off");
+    soilMoist <= "55" && soilMoist !== "100.00"
+      ? setPump("On")
+      : setPump("Off");
   }, [soilMoist]);
 
   return (
     <div>
       <MDBContainer>
-        <div className="reports">
+        <div id="reports" className="reports">
           <MDBRow>
             <h1 className="mb-3">{pump}</h1>
             <h3>{soilMoist}</h3>

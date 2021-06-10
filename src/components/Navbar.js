@@ -9,6 +9,7 @@ import {
   MDBNavbarToggler,
   MDBCollapse,
 } from "mdb-react-ui-kit";
+import { Link } from "react-scroll";
 
 export default function Navbar() {
   const [showNavCentred, setShowNavCentred] = useState(false);
@@ -45,9 +46,11 @@ export default function Navbar() {
             <MDBNavbarItem>
               <MDBNavbarLink href="#">Weather</MDBNavbarLink>
             </MDBNavbarItem>
-            <MDBNavbarItem>
-              <MDBNavbarLink href="#">Reports</MDBNavbarLink>
-            </MDBNavbarItem>
+            <Link activeClass="active" to="reports" spy={true} smooth={true}>
+              <MDBNavbarItem>
+                <MDBNavbarLink href="#">Reports</MDBNavbarLink>
+              </MDBNavbarItem>
+            </Link>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>
