@@ -28,11 +28,11 @@ export default function Dashboard() {
           setTemp(res.feeds.slice(-1)[0].field2);
           setHumidity(res.feeds.slice(-1)[0].field3);
           setLightIntensity(res.feeds.slice(-1)[0].field4);
-          setSoilMoist2(res.feeds.slice(-1)[1].field1);
-          setTemp2(res.feeds.slice(-1)[1].field2);
-          setHumidity2(res.feeds.slice(-1)[1].field3);
-          setLightIntensity2(res.feeds.slice(-1)[1].field4);
-          setUpdated(res.feeds(-1)[0].created_at);
+          // setSoilMoist2(res.feeds.slice(-1)[1].field1);
+          // setTemp2(res.feeds.slice(-1)[1].field2);
+          // setHumidity2(res.feeds.slice(-1)[1].field3);
+          // setLightIntensity2(res.feeds.slice(-1)[1].field4);
+          setUpdated(res.feeds.slice(-1)[0].created_at);
         })
         .catch((e) => console.error(e));
     };
@@ -62,10 +62,10 @@ export default function Dashboard() {
           </MDBRow>
           <MDBRow>
             <h2 className="my-4">Sensor Data</h2>
-            <SensorDataCard />
-            <SensorDataCard />
-            <SensorDataCard />
-            <SensorDataCard />
+            <SensorDataCard updated={updated} />
+            <SensorDataCard updated={updated} />
+            <SensorDataCard updated={updated} />
+            <SensorDataCard updated={updated} />
           </MDBRow>
         </div>
       </MDBContainer>

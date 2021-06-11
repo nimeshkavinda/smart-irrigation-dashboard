@@ -9,10 +9,11 @@ import {
   MDBRow,
   MDBCol,
 } from "mdb-react-ui-kit";
+import moment from "moment";
 
 export default function SensorDataCard(props) {
   return (
-    <MDBCol lg="3">
+    <MDBCol lg="3" className="mb-4">
       <MDBCard className="h-100" style={{ borderRadius: "15px" }}>
         <MDBCardBody>
           <MDBCardTitle>Card title</MDBCardTitle>
@@ -22,7 +23,9 @@ export default function SensorDataCard(props) {
           </MDBCardText>
         </MDBCardBody>
         <MDBCardFooter>
-          <small className="text-muted">{props.updated}</small>
+          <small className="text-muted">
+            {moment(props.updated).format("YYYY-MM-DD h:mm:ss a")}
+          </small>
         </MDBCardFooter>
       </MDBCard>
     </MDBCol>
