@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import WaterPumpCard from "../components/WaterPumpCard";
+import SensorDataCard from "../components/SensorDataCard";
 
 export default function Dashboard() {
   const [channel, setChannel] = useState("");
@@ -13,6 +14,7 @@ export default function Dashboard() {
   const [humidity2, setHumidity2] = useState("");
   const [lightIntensity2, setLightIntensity2] = useState("");
   const [pump, setPump] = useState("Off");
+  const [updated, setUpdated] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,7 @@ export default function Dashboard() {
           setTemp2(res.feeds.slice(-1)[1].field2);
           setHumidity2(res.feeds.slice(-1)[1].field3);
           setLightIntensity2(res.feeds.slice(-1)[1].field4);
+          setUpdated(res.feeds(-1)[0].created_at);
         })
         .catch((e) => console.error(e));
     };
@@ -51,11 +54,18 @@ export default function Dashboard() {
       <MDBContainer>
         <div id="reports" className="reports">
           <MDBRow>
-            <h1 className="mb-3">Water Pumps</h1>
+            <h2 className="mt-5 mb-4">Active Water Pumps</h2>
             <WaterPumpCard
               background={pump === "On" ? "success" : "danger"}
               state={pump}
             />
+          </MDBRow>
+          <MDBRow>
+            <h2 className="my-4">Sensor Data</h2>
+            <SensorDataCard />
+            <SensorDataCard />
+            <SensorDataCard />
+            <SensorDataCard />
           </MDBRow>
         </div>
       </MDBContainer>

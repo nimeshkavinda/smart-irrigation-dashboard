@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  MDBCol,
   MDBCard,
   MDBCardTitle,
   MDBCardText,
@@ -15,7 +16,7 @@ export default function WaterPumpCard(props) {
         style={{ borderRadius: "15px" }}
       >
         <MDBCardBody>
-          <MDBCardTitle>{props.state}</MDBCardTitle>
+          <MDBCardTitle className="h1">{props.state}</MDBCardTitle>
           <MDBCardText>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.

@@ -42,7 +42,7 @@ export default function Jumbotron() {
           style={{
             backgroundImage:
               "url('https://mdbcdn.b-cdn.net/img/new/slides/041.jpg')",
-            height: 600,
+            height: 300,
           }}
         >
           <div
