@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
+import WaterPumpCard from "../components/WaterPumpCard";
 
 export default function Dashboard() {
   const [channel, setChannel] = useState("");
@@ -42,9 +43,11 @@ export default function Dashboard() {
       <MDBContainer>
         <div id="reports" className="reports">
           <MDBRow>
-            <h1 className="mb-3">{pump}</h1>
-            <h3>{soilMoist}</h3>
-            <h3>{channel.field1}</h3>
+            <h1 className="mb-3">Water Pumps</h1>
+            <WaterPumpCard
+              background={pump === "On" ? "success" : "danger"}
+              state={pump}
+            />
           </MDBRow>
         </div>
       </MDBContainer>
