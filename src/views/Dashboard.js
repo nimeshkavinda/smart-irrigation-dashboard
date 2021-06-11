@@ -8,6 +8,10 @@ export default function Dashboard() {
   const [temp, setTemp] = useState("");
   const [humidity, setHumidity] = useState("");
   const [lightIntensity, setLightIntensity] = useState("");
+  const [soilMoist2, setSoilMoist2] = useState("");
+  const [temp2, setTemp2] = useState("");
+  const [humidity2, setHumidity2] = useState("");
+  const [lightIntensity2, setLightIntensity2] = useState("");
   const [pump, setPump] = useState("Off");
 
   useEffect(() => {
@@ -22,6 +26,10 @@ export default function Dashboard() {
           setTemp(res.feeds.slice(-1)[0].field2);
           setHumidity(res.feeds.slice(-1)[0].field3);
           setLightIntensity(res.feeds.slice(-1)[0].field4);
+          setSoilMoist2(res.feeds.slice(-1)[1].field1);
+          setTemp2(res.feeds.slice(-1)[1].field2);
+          setHumidity2(res.feeds.slice(-1)[1].field3);
+          setLightIntensity2(res.feeds.slice(-1)[1].field4);
         })
         .catch((e) => console.error(e));
     };
