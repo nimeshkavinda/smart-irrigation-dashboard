@@ -16,7 +16,7 @@ export default function WaterPumpCard(props) {
         style={{ borderRadius: "15px" }}
       >
         <MDBCardBody>
-          <MDBCardTitle className="h1">{props.state}</MDBCardTitle>
+          <MDBCardTitle className="pump-reading">{props.state}</MDBCardTitle>
           <MDBCardText>
             Some quick example text to build on the card title and make up the
             bulk of the card's content.

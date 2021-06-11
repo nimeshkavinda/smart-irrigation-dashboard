@@ -14,3 +14,16 @@
 .jumbotron {
   border-radius: 15px;
 }
+
+.pump-reading{
+  font-size: 7em;
+}
+
+.sensor-reading{
+  font-size: 4em;
+}
+
+.sensor-meter {
+  height: 40px;
+  width: 100%;
+}

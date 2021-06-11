@@ -62,10 +62,30 @@ export default function Dashboard() {
           </MDBRow>
           <MDBRow>
             <h2 className="my-4">Sensor Data</h2>
-            <SensorDataCard updated={updated} />
-            <SensorDataCard updated={updated} />
-            <SensorDataCard updated={updated} />
-            <SensorDataCard updated={updated} />
+            <SensorDataCard
+              title="Soil Moisture"
+              type="soilMoist"
+              reading={soilMoist}
+              updated={updated}
+            />
+            <SensorDataCard
+              title="Temperature"
+              type="temp"
+              reading={temp}
+              updated={updated}
+            />
+            <SensorDataCard
+              title="Humidity"
+              type="humidity"
+              reading={humidity}
+              updated={updated}
+            />
+            <SensorDataCard
+              title="Light Intensity"
+              type="lightIntensity"
+              reading={lightIntensity}
+              updated={updated}
+            />
           </MDBRow>
         </div>
       </MDBContainer>
