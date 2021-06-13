@@ -36,7 +36,7 @@ export default function Jumbotron() {
         setCurrent(data.current);
         setLocation(data);
         setIcon(data.current.weather[0].icon);
-        setDescription(data.current.weather[0].description);
+        setDescription(data.current.weather[0].main);
         setUvi(data.current.uvi);
         setSunrise(data.current.sunrise);
         setSunset(data.current.sunset);
@@ -63,52 +63,33 @@ export default function Jumbotron() {
 
   const setBackground = () => {
     switch (description) {
-      case "clear sky":
+      case "Clear":
         setOverlay(
           "https://images.unsplash.com/photo-1558418294-9da149757efe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
         );
         break;
-      case "few clouds":
+      case "Cloud":
         setOverlay(
           "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80"
         );
         break;
-      case "scattered clouds":
-        setOverlay(
-          "https://images.unsplash.com/photo-1511747779856-fd751a79aa22?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        );
         break;
-      case "broken clouds":
-        setOverlay(
-          "https://images.unsplash.com/photo-1606158207522-d9eb6de3ee87?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        );
-        break;
-      case "overcast clouds":
-        setOverlay(
-          "https://images.unsplash.com/photo-1528464884105-28166ef8edd0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        );
-        break;
-      case "shower rain":
-        setOverlay(
-          "https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-        );
-        break;
-      case "rain":
+      case "Rain":
         setOverlay(
           "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"
         );
         break;
-      case "thunderstorm":
+      case "Thunderstorm":
         setOverlay(
           "https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80"
         );
         break;
-      case "snow":
+      case "Snow":
         setOverlay(
           "https://images.unsplash.com/photo-1542601098-8fc114e148e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         );
         break;
-      case "mist":
+      case "Mist":
         setOverlay(
           "https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
         );

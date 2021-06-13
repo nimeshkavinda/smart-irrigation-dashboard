@@ -9,10 +9,10 @@ export default function Dashboard() {
   const [temp, setTemp] = useState("");
   const [humidity, setHumidity] = useState("");
   const [lightIntensity, setLightIntensity] = useState("");
-  const [soilMoist2, setSoilMoist2] = useState("");
-  const [temp2, setTemp2] = useState("");
-  const [humidity2, setHumidity2] = useState("");
-  const [lightIntensity2, setLightIntensity2] = useState("");
+  // const [soilMoist2, setSoilMoist2] = useState("");
+  // const [temp2, setTemp2] = useState("");
+  // const [humidity2, setHumidity2] = useState("");
+  // const [lightIntensity2, setLightIntensity2] = useState("");
   const [pump, setPump] = useState("Off");
   const [updated, setUpdated] = useState("");
 
