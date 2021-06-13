@@ -15,11 +15,15 @@ export default function WaterPumpCard(props) {
         className="text-white mb-3"
         style={{ borderRadius: "15px" }}
       >
-        <MDBCardBody>
-          <MDBCardTitle className="pump-reading">{props.state}</MDBCardTitle>
+        <MDBCardBody className="p-5">
+          <MDBCardText>Water pump 1</MDBCardText>
+          <MDBCardTitle className="pump-reading">
+            Water pump is currently: {props.state}
+          </MDBCardTitle>
           <MDBCardText>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {props.state === "Off"
+              ? "Water pump 1 will automatically turn on once soil moisture levels reach below 55%"
+              : "Water pump 1 will automatically turn off once soil moisture levels reach above 50%"}
           </MDBCardText>
         </MDBCardBody>
       </MDBCard>
