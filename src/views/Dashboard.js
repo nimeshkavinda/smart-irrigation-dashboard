@@ -53,14 +53,7 @@ export default function Dashboard() {
     <div>
       <MDBContainer>
         <div id="reports" className="reports">
-          <MDBRow>
-            <h2 className="mt-5 mb-4">Active Water Pumps</h2>
-            <WaterPumpCard
-              background={pump === "On" ? "success" : "danger"}
-              state={pump}
-            />
-          </MDBRow>
-          <MDBRow>
+          <MDBRow className="mt-3">
             <h2 className="my-4">Sensor Data</h2>
             <SensorDataCard
               title="Soil Moisture"
@@ -110,6 +103,13 @@ export default function Dashboard() {
               optimum="30000"
               high="50000"
               max="65535"
+            />
+          </MDBRow>
+          <MDBRow className="mb-2">
+            <h2 className="mb-4">Active Water Pumps</h2>
+            <WaterPumpCard
+              background={pump === "On" ? "success" : "danger"}
+              state={pump}
             />
           </MDBRow>
         </div>
