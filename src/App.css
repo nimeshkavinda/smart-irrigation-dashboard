@@ -15,15 +15,20 @@
   border-radius: 15px;
 }
 
-.pump-reading{
+.pump-reading {
   font-size: 7em;
 }
 
-.sensor-reading{
+.sensor-reading {
   font-size: 3.5em;
 }
 
 .sensor-meter {
   height: 40px;
   width: 100%;
+}
+
+.weather-ico {
+  display: flex;
+  justify-content: start !important;
 }

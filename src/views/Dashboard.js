@@ -101,7 +101,7 @@ export default function Dashboard() {
             <SensorDataCard
               title="Light Intensity"
               type="lightIntensity"
-              unit="Lux"
+              unit="LUX"
               font="2.5em"
               class="mb-4"
               reading={lightIntensity}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import moment from "moment";
+import { BiWind } from "react-icons/bi";
+import { WiSunrise, WiSunset, WiHumidity } from "react-icons/wi";
+import { BsSun } from "react-icons/bs";
 
 export default function Jumbotron() {
   const [time, setTime] = useState(moment().format("MMMM Do YYYY, h:mm:ss a"));
@@ -10,6 +13,13 @@ export default function Jumbotron() {
   const [icon, setIcon] = useState("");
   const [description, setDescription] = useState("");
   const [overlay, setOverlay] = useState("");
+  const [uvi, setUvi] = useState("");
+  const [sunrise, setSunrise] = useState("");
+  const [sunriseTime, setSunriseTime] = useState("");
+  const [sunsetTime, setSunsetTime] = useState("");
+  const [sunset, setSunset] = useState("");
+  const [wind, setWind] = useState("");
+  const [humidity, setHumidity] = useState("");
 
   useEffect(() => {
     fetch(
@@ -25,6 +35,11 @@ export default function Jumbotron() {
         setLocation(data);
         setIcon(data.current.weather[0].icon);
         setDescription(data.current.weather[0].description);
+        setUvi(data.current.uvi);
+        setSunrise(data.current.sunrise);
+        setSunset(data.current.sunset);
+        setWind(data.current.wind_speed);
+        setHumidity(data.current.humidity);
         setBackground();
       })
       .catch((err) => {
@@ -35,6 +50,10 @@ export default function Jumbotron() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setTime(moment().format("MMMM Do YYYY, h:mm:ss a"));
+      let sunriseTimeStamp = new Date(sunrise * 1000);
+      let sunsetTimeStamp = new Date(sunset * 1000);
+      setSunriseTime(moment(sunriseTimeStamp).format("h:mm a"));
+      setSunsetTime(moment(sunsetTimeStamp).format("h:mm a"));
       return () => clearTimeout(timer);
     }, 1000);
   });
@@ -113,24 +132,52 @@ export default function Jumbotron() {
                   <h5 className="mb-3">{time}</h5>
                 </MDBRow>
                 <MDBRow>
-                  <MDBCol>
+                  <MDBCol className="col-md-8">
                     <h3 className="mb-3">{location.timezone}</h3>
                     <MDBRow>
                       <MDBCol>
                         <img
+                          className="weather-ico"
                           src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
-                          height="150"
+                          style={{
+                            objectFit: "contain",
+                            height: "150px",
+                          }}
                         />
                       </MDBCol>
                       <MDBCol>
-                        <h1 className="mb-3" style={{ fontSize: "5rem" }}>
+                        <h1 style={{ fontSize: "6rem" }}>
                           {current.temp}&nbsp;°C
                         </h1>
                       </MDBCol>
                     </MDBRow>
                   </MDBCol>
-                  <MDBCol>
-
+                  <MDBCol className="col-md-4">
+                    <h2 className="mb-3 ">
+                      <BsSun />
+                      &nbsp;&nbsp;
+                      {uvi}
+                    </h2>
+                    <h2 className="mb-3">
+                      <WiSunrise />
+                      &nbsp;&nbsp;
+                      {sunriseTime}
+                    </h2>
+                    <h2 className="mb-3">
+                      <WiSunset />
+                      &nbsp;&nbsp;
+                      {sunsetTime}
+                    </h2>
+                    <h2 className="mb-3">
+                      <WiHumidity />
+                      &nbsp;&nbsp;
+                      {humidity}&nbsp;%
+                    </h2>
+                    <h2 className="mb-3">
+                      <BiWind />
+                      &nbsp;&nbsp;
+                      {wind}&nbsp;km/h
+                    </h2>
                   </MDBCol>
                 </MDBRow>
                 <MDBRow>
