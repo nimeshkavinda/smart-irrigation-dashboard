@@ -7,6 +7,9 @@ export default function Jumbotron() {
   const [location, setLocation] = useState("");
   const [weather, setWeather] = useState("");
   const [current, setCurrent] = useState("");
+  const [icon, setIcon] = useState("");
+  const [description, setDescription] = useState("");
+  const [overlay, setOverlay] = useState("");
 
   useEffect(() => {
     fetch(
@@ -20,7 +23,10 @@ export default function Jumbotron() {
         setWeather(data.current.weather[0]);
         setCurrent(data.current);
         setLocation(data);
-        console.log(data);
+        setIcon(data.current.weather[0].icon);
+        setDescription(data.current.weather[0].description);
+        setBackground();
+        console.log(data.current.weather[0].description);
       })
       .catch((err) => {
         console.error(err);
@@ -34,15 +40,68 @@ export default function Jumbotron() {
     }, 1000);
   });
 
+  const setBackground = () => {
+    switch (description) {
+      case description === "clear sky":
+        setOverlay(
+          "https://images.unsplash.com/photo-1558418294-9da149757efe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
+        );
+        break;
+      case description === "few clouds":
+        setOverlay(
+          "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80"
+        );
+        break;
+      case description === "scattered clouds":
+        setOverlay(
+          "https://images.unsplash.com/photo-1511747779856-fd751a79aa22?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        );
+        break;
+      case description === "broken clouds":
+        setOverlay(
+          "https://images.unsplash.com/photo-1601992664212-8f591f72733b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80"
+        );
+        break;
+      case description === "shower rain":
+        setOverlay(
+          "https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        );
+        break;
+      case description === "rain":
+        setOverlay(
+          "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=375&q=80"
+        );
+        break;
+      case description === "thunderstorm":
+        setOverlay(
+          "https://images.unsplash.com/photo-1605727216801-e27ce1d0cc28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1051&q=80"
+        );
+        break;
+      case description === "snow":
+        setOverlay(
+          "https://images.unsplash.com/photo-1542601098-8fc114e148e2?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        );
+        break;
+      case description === "mist":
+        setOverlay(
+          "https://images.unsplash.com/photo-1585508889431-a1d0d9c5a324?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80"
+        );
+        break;
+      default:
+        setOverlay(
+          "https://images.unsplash.com/photo-1601134467661-3d775b999c8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+        );
+    }
+  };
+
   return (
     <div>
       <MDBContainer>
         <div
           className="jumbotron p-5 text-center bg-image"
           style={{
-            backgroundImage:
-              "url('https://mdbcdn.b-cdn.net/img/new/slides/041.jpg')",
-            height: 300,
+            backgroundImage: `url(${overlay})`,
+            height: 500,
           }}
         >
           <div
@@ -56,6 +115,7 @@ export default function Jumbotron() {
                 <h1 className="mb-3">{current.temp}</h1>
                 <h3 className="mb-3">{weather.main}</h3>
                 <h3 className="mb-3">{weather.description}</h3>
+                <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
               </div>
             </div>
           </div>
