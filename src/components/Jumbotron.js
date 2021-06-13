@@ -26,8 +26,6 @@ export default function Jumbotron() {
         setIcon(data.current.weather[0].icon);
         setDescription(data.current.weather[0].description);
         setBackground();
-        console.log(description);
-        console.log(overlay);
       })
       .catch((err) => {
         console.error(err);
@@ -99,7 +97,7 @@ export default function Jumbotron() {
     <div>
       <MDBContainer>
         <div
-          className="jumbotron p-5 text-center bg-image"
+          className="jumbotron p-5 bg-image"
           style={{
             backgroundImage: `url(${overlay})`,
             height: 500,
@@ -111,12 +109,33 @@ export default function Jumbotron() {
           >
             <div className="d-flex justify-content-center align-items-center h-100">
               <div className="text-white">
-                <h5 className="mb-3">{time}</h5>
-                <h3 className="mb-3">{location.timezone}</h3>
-                <h1 className="mb-3">{current.temp}</h1>
-                <h3 className="mb-3">{weather.main}</h3>
-                <h3 className="mb-3">{weather.description}</h3>
-                <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} />
+                <MDBRow>
+                  <h5 className="mb-3">{time}</h5>
+                </MDBRow>
+                <MDBRow>
+                  <MDBCol>
+                    <h3 className="mb-3">{location.timezone}</h3>
+                    <MDBRow>
+                      <MDBCol>
+                        <img
+                          src={`http://openweathermap.org/img/wn/${icon}@2x.png`}
+                          height="150"
+                        />
+                      </MDBCol>
+                      <MDBCol>
+                        <h1 className="mb-3" style={{ fontSize: "5rem" }}>
+                          {current.temp}&nbsp;°C
+                        </h1>
+                      </MDBCol>
+                    </MDBRow>
+                  </MDBCol>
+                  <MDBCol>
+
+                  </MDBCol>
+                </MDBRow>
+                <MDBRow>
+                  <h4 className="mb-3">{weather.description}</h4>
+                </MDBRow>
               </div>
             </div>
           </div>

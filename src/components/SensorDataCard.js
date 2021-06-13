@@ -33,8 +33,8 @@ export default function SensorDataCard(props) {
     <MDBCol lg="3" className="mb-5">
       <MDBCard className="h-100" style={{ borderRadius: "15px" }}>
         <MDBCardBody>
-          <MDBCardTitle className="sensor-reading">
-            {props.reading}
+          <MDBCardTitle style={{ fontSize: `${props.font}` }} className={`${props.class}`}>
+            {props.reading}&nbsp;{props.unit}
           </MDBCardTitle>
           <MDBCardTitle className="h3">
             {props.title}&nbsp;&nbsp;
@@ -44,10 +44,10 @@ export default function SensorDataCard(props) {
             <meter
               className="sensor-meter"
               min="0"
-              low="10"
-              optimum="50"
-              high="90"
-              max="100"
+              low={props.low}
+              optimum={props.optimum}
+              high={props.high}
+              max={props.max}
               value={props.reading}
             ></meter>
           </MDBCardText>

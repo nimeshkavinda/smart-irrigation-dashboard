@@ -65,26 +65,51 @@ export default function Dashboard() {
             <SensorDataCard
               title="Soil Moisture"
               type="soilMoist"
+              unit="%"
+              font="3.5em"
               reading={soilMoist}
               updated={updated}
+              low="50"
+              optimum="55"
+              high="90"
+              max="100"
             />
             <SensorDataCard
               title="Temperature"
               type="temp"
+              unit="°C"
+              font="3.5em"
               reading={temp}
               updated={updated}
+              low="15"
+              optimum="24"
+              high="36"
+              max="100"
             />
             <SensorDataCard
               title="Humidity"
               type="humidity"
+              unit="%"
+              font="3.5em"
               reading={humidity}
               updated={updated}
+              low="40"
+              optimum="50"
+              high="80"
+              max="100"
             />
             <SensorDataCard
               title="Light Intensity"
               type="lightIntensity"
+              unit="Lux"
+              font="2.5em"
+              class="mb-4"
               reading={lightIntensity}
               updated={updated}
+              low="10000"
+              optimum="30000"
+              high="50000"
+              max="65535"
             />
           </MDBRow>
         </div>
