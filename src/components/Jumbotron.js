@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MDBContainer, MDBRow, MDBCol } from "mdb-react-ui-kit";
 import moment from "moment";
+import { FaSun } from "react-icons/fa";
 import { BiWind } from "react-icons/bi";
 import { WiSunrise, WiSunset, WiHumidity } from "react-icons/wi";
 import { BsSun } from "react-icons/bs";
@@ -20,6 +21,7 @@ export default function Jumbotron() {
   const [sunset, setSunset] = useState("");
   const [wind, setWind] = useState("");
   const [humidity, setHumidity] = useState("");
+  const [feelsLike, setFeelsLike] = useState("");
 
   useEffect(() => {
     fetch(
@@ -40,6 +42,7 @@ export default function Jumbotron() {
         setSunset(data.current.sunset);
         setWind(data.current.wind_speed);
         setHumidity(data.current.humidity);
+        setFeelsLike(data.current.feels_like);
         setBackground();
       })
       .catch((err) => {
@@ -153,6 +156,11 @@ export default function Jumbotron() {
                     </MDBRow>
                   </MDBCol>
                   <MDBCol className="col-md-4">
+                    <h2 className="mb-3 ">
+                      <FaSun />
+                      &nbsp;&nbsp;
+                      {feelsLike}&nbsp;°C
+                    </h2>
                     <h2 className="mb-3 ">
                       <BsSun />
                       &nbsp;&nbsp;
