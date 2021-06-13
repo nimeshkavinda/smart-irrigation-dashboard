@@ -43,7 +43,6 @@ export default function Jumbotron() {
         setWind(data.current.wind_speed);
         setHumidity(data.current.humidity);
         setFeelsLike(data.current.feels_like);
-        setBackground();
       })
       .catch((err) => {
         console.error(err);
@@ -57,6 +56,7 @@ export default function Jumbotron() {
       let sunsetTimeStamp = new Date(sunset * 1000);
       setSunriseTime(moment(sunriseTimeStamp).format("h:mm a"));
       setSunsetTime(moment(sunsetTimeStamp).format("h:mm a"));
+      setBackground();
       return () => clearTimeout(timer);
     }, 1000);
   });
@@ -68,11 +68,10 @@ export default function Jumbotron() {
           "https://images.unsplash.com/photo-1558418294-9da149757efe?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=334&q=80"
         );
         break;
-      case "Cloud":
+      case "Clouds":
         setOverlay(
           "https://images.unsplash.com/photo-1517685352821-92cf88aee5a5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=667&q=80"
         );
-        break;
         break;
       case "Rain":
         setOverlay(
