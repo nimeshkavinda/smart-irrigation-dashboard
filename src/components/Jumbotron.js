@@ -83,6 +83,11 @@ export default function Jumbotron() {
           "https://images.unsplash.com/photo-1606158207522-d9eb6de3ee87?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
         );
         break;
+      case "overcast clouds":
+        setOverlay(
+          "https://images.unsplash.com/photo-1528464884105-28166ef8edd0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+        );
+        break;
       case "shower rain":
         setOverlay(
           "https://images.unsplash.com/photo-1494007485290-ce668e189d92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
